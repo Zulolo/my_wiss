@@ -4,6 +4,15 @@
  *  Created on: Apr 5, 2018
  *      Author: zulolo
  */
+
+#include "lwip/err.h"
+#include "lwip/sockets.h"
+#include "lwip/sys.h"
+#include "lwip/netdb.h"
+#include "lwip/dns.h"
+#include "lwip/apps/mqtt.h"
+
+#include "cJSON.h"
 #include "my_wiss.h"
 
 static mqtt_client_t static_client;
