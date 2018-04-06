@@ -16,9 +16,6 @@
 
 #include "esp_log.h"
 
-
-
-
 #include "os.h"
 
 #define WIFI_EVENT_GROUP_CONNECTED_BIT			BIT0
