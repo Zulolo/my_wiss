@@ -22,6 +22,7 @@
 #include "os.h"
 
 #define WIFI_EVENT_GROUP_CONNECTED_BIT			BIT0
+#define WIFI_EVENT_GROUP_ESPTOUCH_DONE_BIT		BIT1
 
 extern EventGroupHandle_t wifi_event_group;
 

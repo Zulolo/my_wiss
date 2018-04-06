@@ -7,7 +7,7 @@
    CONDITIONS OF ANY KIND, either express or implied.
 */
 
-
+#include "nvs_flash.h"
 #include "my_wiss.h"
 
 /* The examples use simple WiFi configuration that you can set via
@@ -23,7 +23,14 @@ extern void initialise_wifi(void);
 
 void app_main()
 {
-//    ESP_ERROR_CHECK( nvs_flash_init() );
+	esp_err_t err = nvs_flash_init();
+    if (err == ESP_ERR_NVS_NO_FREE_PAGES) {
+        // NVS partition was truncated and needs to be erased
+        // Retry nvs_flash_init
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        err = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK( err );
     initialise_wifi();
     xTaskCreate(&test_mqtt_task, "test_mqtt", 4096, NULL, 5, NULL);
 }
