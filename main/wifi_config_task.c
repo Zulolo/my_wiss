@@ -24,7 +24,7 @@ EventGroupHandle_t wifi_event_group;
 static const char *TAG_WIFI = "wifi";
 static wifi_connect_type_t how_to_connect_wifi;
 
-static esp_err_t set_ssid_to_nvs(u8_t *ssid, u8_t *password);
+static esp_err_t set_ssid_to_nvs(char *ssid, char *password);
 static void smartconfig_task(void * parm);
 
 static esp_err_t event_handler(void *ctx, system_event_t *event)
@@ -73,7 +73,8 @@ static void sc_callback(smartconfig_status_t status, void *pdata)
             wifi_config_t *wifi_config = pdata;
             ESP_LOGI(TAG_WIFI, "SSID:%s", wifi_config->sta.ssid);
             ESP_LOGI(TAG_WIFI, "PASSWORD:%s", wifi_config->sta.password);
-            set_ssid_to_nvs(wifi_config->sta.ssid, wifi_config->sta.password);
+            set_ssid_to_nvs((char *)(wifi_config->sta.ssid), (char *)(wifi_config->sta.password));
+            how_to_connect_wifi = WIFI_CONNECT_NORMAL;
             ESP_ERROR_CHECK( esp_wifi_disconnect() );
             ESP_ERROR_CHECK( esp_wifi_set_config(ESP_IF_WIFI_STA, wifi_config) );
             ESP_ERROR_CHECK( esp_wifi_connect() );
@@ -136,7 +137,7 @@ static esp_err_t set_ssid_to_nvs(char *ssid, char *password)
 	return ESP_OK;
 }
 
-static esp_err_t get_ssid_from_nvs(char *ssid, u8_t ssid_len, char *password, u8_t password_len)
+static esp_err_t get_ssid_from_nvs(char *ssid, size_t ssid_len, char *password, size_t password_len)
 {
 	nvs_handle my_handle;
 	esp_err_t err;
@@ -184,8 +185,8 @@ static void wifi_config(void)
 	wifi_config_t wifi_config;
 
     // check if there is configured SSID and password
-    if (ESP_OK == get_ssid_from_nvs(wifi_config.sta.ssid, sizeof(wifi_config.sta.ssid),
-    		wifi_config.sta.password, sizeof(wifi_config.sta.password))) {
+    if (ESP_OK == get_ssid_from_nvs((char *)(wifi_config.sta.ssid), sizeof(wifi_config.sta.ssid),
+    		(char *)(wifi_config.sta.password), sizeof(wifi_config.sta.password))) {
     	start_wifi_connect(&wifi_config);
     } else {
     	// start smart_config
