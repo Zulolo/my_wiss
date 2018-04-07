@@ -20,6 +20,7 @@
 
 extern void test_mqtt_task(void *pvParameters);
 extern void initialise_wifi(void);
+extern void start_webserver(void);
 
 void app_main()
 {
@@ -32,5 +33,6 @@ void app_main()
     }
     ESP_ERROR_CHECK( err );
     initialise_wifi();
+    start_webserver();
     xTaskCreate(&test_mqtt_task, "test_mqtt", 4096, NULL, 5, NULL);
 }

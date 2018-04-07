@@ -7,6 +7,7 @@ deps_config := \
 	/home/zulolo/esp-idf/components/fatfs/Kconfig \
 	/home/zulolo/esp-idf/components/freertos/Kconfig \
 	/home/zulolo/esp-idf/components/heap/Kconfig \
+	/home/zulolo/esp/my_wiss/components/libesphttpd/Kconfig \
 	/home/zulolo/esp-idf/components/libsodium/Kconfig \
 	/home/zulolo/esp-idf/components/log/Kconfig \
 	/home/zulolo/esp-idf/components/lwip/Kconfig \
