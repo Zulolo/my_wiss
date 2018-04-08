@@ -9,15 +9,17 @@
 #include <libesphttpd/esp.h>
 #include "libesphttpd/httpd.h"
 #include "libesphttpd/httpdespfs.h"
+#include "libesphttpd/espfs.h"
+#include "libesphttpd/webpages-espfs.h"
+#include "libesphttpd/route.h"
 #include "my_wiss.h"
 
+static const char *TAG_WEBSERVER = "webserver_task";
 CgiStatus ICACHE_FLASH_ATTR cgiGreetUser(HttpdConnData *connData);
 
 const HttpdBuiltInUrl builtInUrls[]={
-	{"/", cgiRedirect, "/index.cgi", NULL},
-	{"/index.cgi", cgiGreetUser, NULL, NULL},
-	{"*", cgiEspFsHook, NULL, NULL},
-	{NULL, NULL, NULL, NULL}
+	ROUTE_FILESYSTEM(),
+	ROUTE_END()
 };
 
 CgiStatus ICACHE_FLASH_ATTR cgiGreetUser(HttpdConnData *connData) {
@@ -64,8 +66,15 @@ CgiStatus ICACHE_FLASH_ATTR cgiGreetUser(HttpdConnData *connData) {
 	return HTTPD_CGI_DONE;
 }
 
-void start_webserver(void)
+void webserver_task(void *pvParameters)
 {
+
+	ESP_LOGI(TAG_WEBSERVER, "webserver start\n");
+	espFsInit((void*)(webpages_espfs_start));
 	xEventGroupWaitBits(wifi_event_group, WIFI_EVENT_GROUP_CONNECTED_BIT, false, true, portMAX_DELAY);
+	ESP_LOGI(TAG_WEBSERVER, "Webserver init.");
 	httpdInit(builtInUrls, 80, HTTPD_FLAG_NONE);
+	while (1) {
+		vTaskDelay(5000 / portTICK_PERIOD_MS);
+	}
 }

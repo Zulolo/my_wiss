@@ -138,12 +138,13 @@ void example_do_connect(mqtt_client_t *client)
   }
 }
 
-void test_mqtt_task(void *pvParameters)
+void mqtt_task(void *pvParameters)
 {
+	ESP_LOGI(TAG_MQTT, "start mqtt task.");
 	xEventGroupWaitBits(wifi_event_group, WIFI_EVENT_GROUP_CONNECTED_BIT, false, true, portMAX_DELAY);
-	ESP_LOGI(TAG_MQTT, "Connected to AP");
 	example_do_connect(&static_client);
 	while (1) {
+		xEventGroupWaitBits(wifi_event_group, WIFI_EVENT_GROUP_CONNECTED_BIT, false, true, portMAX_DELAY);
 		if (mqtt_client_is_connected(&static_client)) {
 			example_publish(&static_client, "example publish");
 		}

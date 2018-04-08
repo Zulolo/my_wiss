@@ -20,6 +20,7 @@
 
 #define WIFI_EVENT_GROUP_CONNECTED_BIT			BIT0
 #define WIFI_EVENT_GROUP_ESPTOUCH_DONE_BIT		BIT1
+#define WIFI_EVENT_GROUP_DISCONNECTED_BIT		BIT2
 
 extern EventGroupHandle_t wifi_event_group;
 

@@ -23,6 +23,7 @@ EventGroupHandle_t wifi_event_group;
 
 static const char *TAG_WIFI = "wifi";
 static wifi_connect_type_t how_to_connect_wifi;
+static wifi_config_t wifi_config;
 
 static esp_err_t set_ssid_to_nvs(char *ssid, char *password);
 static void smartconfig_task(void * parm);
@@ -32,6 +33,7 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
     switch(event->event_id) {
     case SYSTEM_EVENT_STA_START:
     	if (WIFI_CONNECT_NORMAL == how_to_connect_wifi) {
+//    		ESP_LOGI(TAG_WIFI, "CONNECT");
     		esp_wifi_connect();
     	} else {
     		xTaskCreate(smartconfig_task, "smartconfig_task", 4096, NULL, 3, NULL);
@@ -39,11 +41,13 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
         break;
     case SYSTEM_EVENT_STA_GOT_IP:
         xEventGroupSetBits(wifi_event_group, WIFI_EVENT_GROUP_CONNECTED_BIT);
+        xEventGroupClearBits(wifi_event_group, WIFI_EVENT_GROUP_DISCONNECTED_BIT);
         break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
         /* This is a workaround as ESP32 WiFi libs don't currently
            auto-reassociate. */
     	xEventGroupClearBits(wifi_event_group, WIFI_EVENT_GROUP_CONNECTED_BIT);
+    	xEventGroupSetBits(wifi_event_group, WIFI_EVENT_GROUP_DISCONNECTED_BIT);
     	if (WIFI_CONNECT_NORMAL == how_to_connect_wifi) {
     		esp_wifi_connect();
     	} else {
@@ -96,7 +100,7 @@ static void sc_callback(smartconfig_status_t status, void *pdata)
 static void smartconfig_task(void * parm)
 {
     EventBits_t uxBits;
-    ESP_ERROR_CHECK( esp_smartconfig_set_type(SC_TYPE_ESPTOUCH) );
+    ESP_ERROR_CHECK( esp_smartconfig_set_type(SC_TYPE_ESPTOUCH_AIRKISS) );
     ESP_ERROR_CHECK( esp_smartconfig_start(sc_callback) );
     while (1) {
         uxBits = xEventGroupWaitBits(wifi_event_group, WIFI_EVENT_GROUP_CONNECTED_BIT | WIFI_EVENT_GROUP_ESPTOUCH_DONE_BIT,
@@ -159,6 +163,7 @@ static esp_err_t get_ssid_from_nvs(char *ssid, size_t ssid_len, char *password, 
 	// Close
 	nvs_close(my_handle);
 
+	ESP_LOGI(TAG_WIFI, "Read SSID:%s and password:%s from nvs, ", ssid, password);
 	return ESP_OK;
 }
 
@@ -180,10 +185,8 @@ void start_smart_config(void)
     ESP_ERROR_CHECK( esp_wifi_start() );
 }
 
-static void wifi_config(void)
+static void config_wifi(void)
 {
-	wifi_config_t wifi_config;
-
     // check if there is configured SSID and password
     if (ESP_OK == get_ssid_from_nvs((char *)(wifi_config.sta.ssid), sizeof(wifi_config.sta.ssid),
     		(char *)(wifi_config.sta.password), sizeof(wifi_config.sta.password))) {
@@ -199,9 +202,10 @@ void initialise_wifi(void)
     tcpip_adapter_init();
     wifi_event_group = xEventGroupCreate();
     xEventGroupClearBits(wifi_event_group, WIFI_EVENT_GROUP_CONNECTED_BIT);
+    xEventGroupSetBits(wifi_event_group, WIFI_EVENT_GROUP_DISCONNECTED_BIT);
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
     ESP_ERROR_CHECK( esp_wifi_set_storage(WIFI_STORAGE_RAM) );
-    wifi_config();
+    config_wifi();
 }

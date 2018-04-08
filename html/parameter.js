@@ -1,0 +1,1 @@
+var module = "WISE-4012E";
