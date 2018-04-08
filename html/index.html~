@@ -22,7 +22,7 @@
 		<script src="/config/nvd3.js"></script>
 		<script src="/config/iopctrl.js"></script>
 		<!-- In house Core JavaScript -->
-		<script src="/config/mywiss_common.js"></script>
+		<script src="/config/common.js"></script>
 		<script src="/config/di2ai2relay.js"></script>
 	</head>
 	<body onload='onload();'>
