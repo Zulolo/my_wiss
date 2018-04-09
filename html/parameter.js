@@ -1,1 +1,1 @@
-var module = "WISE-4012E";
+var module = "SH-0001";

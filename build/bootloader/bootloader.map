@@ -316,84 +316,84 @@ END GROUP
  *(.jcr)
                 0x000000003fff001c                _data_end = ABSOLUTE (.)
 
-.dram0.rodata   0x000000003fff001c     0x1604
+.dram0.rodata   0x000000003fff001c     0x1608
                 0x000000003fff001c                _rodata_start = ABSOLUTE (.)
  *(.rodata)
  .rodata        0x000000003fff001c       0x14 /home/zulolo/esp/my_wiss/build/bootloader/main/libmain.a(bootloader_start.o)
  .rodata        0x000000003fff0030        0x8 /home/zulolo/esp/my_wiss/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
  *(.rodata.*)
  .rodata.str1.4
-                0x000000003fff0038      0x956 /home/zulolo/esp/my_wiss/build/bootloader/main/libmain.a(bootloader_start.o)
- *fill*         0x000000003fff098e        0x2 
+                0x000000003fff0038      0x95a /home/zulolo/esp/my_wiss/build/bootloader/main/libmain.a(bootloader_start.o)
+ *fill*         0x000000003fff0992        0x2 
  .rodata.__func__$3808
-                0x000000003fff0990       0x10 /home/zulolo/esp/my_wiss/build/bootloader/main/libmain.a(bootloader_start.o)
+                0x000000003fff0994       0x10 /home/zulolo/esp/my_wiss/build/bootloader/main/libmain.a(bootloader_start.o)
  .rodata.str1.4
-                0x000000003fff09a0      0x28e /home/zulolo/esp/my_wiss/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- *fill*         0x000000003fff0c2e        0x2 
+                0x000000003fff09a4      0x28e /home/zulolo/esp/my_wiss/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ *fill*         0x000000003fff0c32        0x2 
  .rodata.str1.4
-                0x000000003fff0c30      0x163 /home/zulolo/esp/my_wiss/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- *fill*         0x000000003fff0d93        0x1 
+                0x000000003fff0c34      0x163 /home/zulolo/esp/my_wiss/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ *fill*         0x000000003fff0d97        0x1 
  .rodata.str1.4
-                0x000000003fff0d94      0x45a /home/zulolo/esp/my_wiss/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x000000003fff0d98      0x45a /home/zulolo/esp/my_wiss/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                         0x49a (size before relaxing)
- *fill*         0x000000003fff11ee        0x2 
+ *fill*         0x000000003fff11f2        0x2 
  .rodata.str1.4
-                0x000000003fff11f0       0xc4 /home/zulolo/esp/my_wiss/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x000000003fff11f4       0xc4 /home/zulolo/esp/my_wiss/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .rodata.padding$2493
-                0x000000003fff12b4       0x40 /home/zulolo/esp/my_wiss/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x000000003fff12b8       0x40 /home/zulolo/esp/my_wiss/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .rodata.__func__$2489
-                0x000000003fff12f4       0x19 /home/zulolo/esp/my_wiss/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- *fill*         0x000000003fff130d        0x3 
+                0x000000003fff12f8       0x19 /home/zulolo/esp/my_wiss/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ *fill*         0x000000003fff1311        0x3 
  .rodata.__func__$2469
-                0x000000003fff1310       0x17 /home/zulolo/esp/my_wiss/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- *fill*         0x000000003fff1327        0x1 
+                0x000000003fff1314       0x17 /home/zulolo/esp/my_wiss/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ *fill*         0x000000003fff132b        0x1 
  .rodata.str1.4
-                0x000000003fff1328      0x250 /home/zulolo/esp/my_wiss/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff132c      0x250 /home/zulolo/esp/my_wiss/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                         0x24d (size before relaxing)
  .rodata.rtc_clk_xtal_freq_estimate
-                0x000000003fff1578       0x64 /home/zulolo/esp/my_wiss/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff157c       0x64 /home/zulolo/esp/my_wiss/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.rtc_clk_cpu_freq_value
-                0x000000003fff15dc       0x14 /home/zulolo/esp/my_wiss/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff15e0       0x14 /home/zulolo/esp/my_wiss/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.__func__$2616
-                0x000000003fff15f0       0x17 /home/zulolo/esp/my_wiss/build/bootloader/soc/libsoc.a(rtc_clk.o)
- *fill*         0x000000003fff1607        0x1 
+                0x000000003fff15f4       0x17 /home/zulolo/esp/my_wiss/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ *fill*         0x000000003fff160b        0x1 
  .rodata.__func__$2601
-                0x000000003fff1608       0x15 /home/zulolo/esp/my_wiss/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff160c       0x15 /home/zulolo/esp/my_wiss/build/bootloader/soc/libsoc.a(rtc_clk.o)
  *(.gnu.linkonce.r.*)
  *(.rodata1)
-                0x000000003fff161d                __XT_EXCEPTION_TABLE_ = ABSOLUTE (.)
+                0x000000003fff1621                __XT_EXCEPTION_TABLE_ = ABSOLUTE (.)
  *(.xt_except_table)
  *(.gcc_except_table)
  *(.gnu.linkonce.e.*)
  *(.gnu.version_r)
  *(.eh_frame)
-                0x000000003fff1620                . = ((. + 0x3) & 0xfffffffffffffffc)
- *fill*         0x000000003fff161d        0x3 
-                0x000000003fff1620                __init_array_start = ABSOLUTE (.)
+                0x000000003fff1624                . = ((. + 0x3) & 0xfffffffffffffffc)
+ *fill*         0x000000003fff1621        0x3 
+                0x000000003fff1624                __init_array_start = ABSOLUTE (.)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *(.ctors)
-                0x000000003fff1620                __init_array_end = ABSOLUTE (.)
+                0x000000003fff1624                __init_array_end = ABSOLUTE (.)
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *(.dtors)
-                0x000000003fff1620                __XT_EXCEPTION_DESCS_ = ABSOLUTE (.)
+                0x000000003fff1624                __XT_EXCEPTION_DESCS_ = ABSOLUTE (.)
  *(.xt_except_desc)
  *(.gnu.linkonce.h.*)
-                0x000000003fff1620                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
+                0x000000003fff1624                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
  *(.xt_except_desc_end)
  *(.dynamic)
  *(.gnu.version_d)
-                0x000000003fff1620                _rodata_end = ABSOLUTE (.)
-                0x000000003fff1620                _lit4_start = ABSOLUTE (.)
+                0x000000003fff1624                _rodata_end = ABSOLUTE (.)
+                0x000000003fff1624                _lit4_start = ABSOLUTE (.)
  *(*.lit4)
  *(.lit4.*)
  *(.gnu.linkonce.lit4.*)
-                0x000000003fff1620                _lit4_end = ABSOLUTE (.)
-                0x000000003fff1620                . = ALIGN (0x4)
-                0x000000003fff1620                _heap_start = ABSOLUTE (.)
+                0x000000003fff1624                _lit4_end = ABSOLUTE (.)
+                0x000000003fff1624                . = ALIGN (0x4)
+                0x000000003fff1624                _heap_start = ABSOLUTE (.)
 
 .iram.text      0x0000000040078000     0x364f
                 0x0000000040078000                _stext = .

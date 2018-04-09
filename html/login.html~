@@ -77,7 +77,7 @@
 	      url = url.replace("//", "/");
 	      document.loginform.action = url;
 	    }
-	    document.loginform.submit();
+	    document.;loginform.submit();
 	  }
 	  (function() {
 	    setTimeout(function() {

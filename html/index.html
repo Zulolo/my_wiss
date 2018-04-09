@@ -9,7 +9,7 @@
 		<link href="/config/bootstrap.css" rel="stylesheet">
 		<!-- nv.d3 core CSS -->
 		<link href="/config/nvd3.css" rel="stylesheet" type="text/css">
-		<!-- advantech core CSS -->
+		
 		<link href="/config/mywiss.css" rel="stylesheet">
 		<script src="/parameter.js"></script>
 		<!-- jQuery Version 1.11.0 -->
@@ -408,8 +408,7 @@
 				var jsMsg = message + " on line " + line + " at " + file + "\r\n";
 				if(error != undefined){
 					stack = error.stack;
-				}
-				else{
+				}else{
 					stack = "";
 				}
 				jsMsg += stack;
