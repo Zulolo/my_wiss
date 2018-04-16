@@ -197,7 +197,7 @@ static void config_wifi(void)
     }
 }
 
-void initialise_wifi(void)
+void wifi_ap_task(void)
 {
     tcpip_adapter_init();
     wifi_event_group = xEventGroupCreate();

@@ -19,7 +19,7 @@
 
 
 extern void mqtt_task(void *pvParameters);
-extern void initialise_wifi(void);
+extern void wifi_ap_task(void);
 extern void webserver_task(void *pvParameters);
 
 void app_main()
@@ -32,7 +32,7 @@ void app_main()
         err = nvs_flash_init();
     }
     ESP_ERROR_CHECK( err );
-    initialise_wifi();
+    wifi_ap_task();
     xTaskCreate(&webserver_task, "webserver", 4096, NULL, 5, NULL);
     xTaskCreate(&mqtt_task, "mqtt", 4096, NULL, 5, NULL);
 }
